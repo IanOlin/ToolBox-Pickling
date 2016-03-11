@@ -29,8 +29,15 @@ def update_counter(file_name, reset=False):
 	>>> update_counter('blah2.txt')
 	2
 	"""
-	pass
-
+	f = open(file_name, 'r+')
+	res = load(f) +1
+	f.seek(0)
+	if exists(file_name) and reset==False:
+		dump (res, f)
+	else:
+		dump(1, f)
+		return 1
+	return res
 if __name__ == '__main__':
 	if len(sys.argv) < 2:
 		import doctest
